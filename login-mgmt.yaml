@@ -1,0 +1,20 @@
+config:
+  target: "https://devapi.soulparking.co.id/v1/mgmt/login"
+  phases:
+    - duration: 120
+      arrivalRate: 2
+      
+  defaults:
+    headers:
+      Content-Type: "application/json"
+    plugins:
+      - ./node_modules/artillery-plugin-influxdb
+  output:
+    - json: "report.json"
+scenarios:
+  - flow:
+      - post:
+          url: "/v1/mgmt/login"
+          json:
+            email: "automation.soulparking@gmail.com"
+            password: "TestQA123"
